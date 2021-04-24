@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include<string.h>
+#include "queue.c"
+#include "stack.c"
+ int main()
+ {
+     char a[100];
+     scanf("%s",a);
+     printf("%s",a);
+     int size = strlen(a);
+     printf("SiZE %d\n",size);
+     for(int i = 0 ; i < size ; i++){
+        
+        push(a[i]);
+    }
+    while(!isQueueEmpty()){
+        
+         pop();
+         en
+        display_queue();
+    
+        
+    }
+ }

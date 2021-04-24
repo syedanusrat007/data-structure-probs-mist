@@ -1,0 +1,9 @@
+Array Operations:
+1. Left Shift
+2. Right Shift
+3. Left Rotation 
+4. Right Rotation
+5. Left Rotation k times
+6. Right Rotation k times
+7. Left ShiftWith
+8. Right ShiftWith

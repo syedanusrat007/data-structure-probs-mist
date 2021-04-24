@@ -1,0 +1,185 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+
+struct Node
+{
+    int value;
+    struct Node * next;
+};
+struct Node * head;
+
+void insertFirst(int d)
+{
+
+    struct Node * p = (struct Node *)malloc(sizeof(struct Node*));
+    p->value = d;
+    p->next = head->next;
+    head->next = p;
+}
+
+void insertLast(int d)
+{
+
+    struct Node * p = (struct Node *)malloc(sizeof(struct Node*));
+    p->value = d;
+    struct Node *cur = head;
+    while(cur->next!= NULL)
+    {
+        cur = cur->next;
+    }
+
+    p->next = NULL;
+    cur->next= p;
+}
+
+int deleteFirst()
+{
+    struct Node *cur;
+    if(head==NULL)
+        return;
+   //int *b;
+
+    cur=head;
+
+    head=head->next;
+     //b=head->value;
+    //return b;
+    free(cur);
+
+
+}
+
+int deleteLast()
+{
+  if (head == NULL)
+	   return;
+   //int *a;
+   struct Node *cur = head;
+   struct Node *prev = NULL;
+
+   while (cur->next != NULL){
+	   prev = cur;
+	   cur=cur->next;
+    // a=cur->value;
+   }
+
+   if (prev != NULL)
+  	   prev->next = NULL;
+
+    //return a;
+   free(cur);
+
+
+}
+
+void push(int d)
+{
+      insertLast(d);
+}
+
+int pop()
+{
+     return deleteLast();
+}
+
+void enqueue(int d)
+{
+     insertFirst(d);
+}
+
+int dequeue()
+{
+     return deleteFirst();
+}
+ void delete_key(int d)
+ {
+
+      struct Node *cur = head;
+      struct Node *prev=NULL;
+      if(head->value==d){
+         deleteFirst();
+
+      }
+      else {
+        while(cur->value!=d){
+            prev=cur;
+            cur=cur->next;
+        }
+        if(prev!=NULL)
+        {
+            prev->next=cur->next;
+        }
+        free(cur);
+      }
+
+
+
+ }
+
+
+
+void print()
+{
+    struct Node * cur = head->next;
+    printf("list:\t");
+    int j=0;
+    while(cur!=NULL)
+    {
+        printf("%d\t", cur->value);
+        cur = cur->next;
+        j=1;
+    }
+    if (j==0)
+    {
+        printf("Empty\n");
+    }
+    printf("\n");
+}
+
+int isEmpty()
+{
+    return (head->next==NULL);
+}
+
+int main()
+{
+    head = (struct Node *)malloc(sizeof(struct Node*));
+    head->next = NULL;
+    push(10);
+    push(20);
+    push(30);
+    push(40);
+    push(50);
+    print();
+    while(!isEmpty())
+    {
+    	printf("pop value is : %d\n", pop());
+    	print();
+    }
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+    enqueue(40);
+    enqueue(50);
+    print();
+    while(!isEmpty())
+    {
+
+        printf("dequeued value is: %d\n", dequeue());
+        print();
+    }
+      push(10);
+    push(20);
+    push(30);
+    push(40);
+    push(50);
+    print();
+    int d;
+    printf("Enter value to delete :\n");
+    scanf(" %d",&d);
+    delete_key(d);
+      print();
+
+    return 0;
+}

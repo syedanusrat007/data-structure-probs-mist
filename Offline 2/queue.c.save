@@ -1,0 +1,109 @@
+
+
+#include<stdio.h>
+#define MAXSIZE 5
+
+int q[MAXSIZE];
+int front=-1;
+int rear=-1;
+
+
+void enqueue(int element);
+int dequeue();
+int isQueueEmpty();
+int queueSize();
+int isQueueFull();
+void display_queue();
+
+
+
+
+
+void enqueue(int element)
+{
+
+		if(isQueueFull())
+		{
+			printf("Error: Queue is Full\n");
+			return;
+		}
+		if (isQueueEmpty())
+		{
+			front = rear = 0;
+		}
+		else
+		{
+		    rear = (rear+1)%MAXSIZE;
+		}
+		q[rear] = element;
+}
+
+int dequeue()
+{
+
+		if(isQueueEmpty())
+		{
+			printf("Error: Queue is Empty\n");
+			return;
+		}
+		else if(front == rear )
+		{
+			rear = front = 0;
+		}
+		else
+		{
+			front = (front+1)%MAXSIZE;
+		}
+	}
+
+
+int isQueueEmpty()
+{
+    if (front == -1 && rear == -1){
+
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+
+int isQueueFull()
+{
+    if((rear+1)%MAXSIZE == front) {
+        printf("Full\n");
+        return 1;
+    }
+    else{
+        return 0;
+    }
+
+}
+
+int queueSize()
+{
+    int length(int front, int rear)
+{
+     return rear-front;
+}
+
+}
+
+void display_queue()
+{
+    int i;
+    int count = (rear+MAXSIZE-front)%MAXSIZE + 1;
+		printf("Queue       : ");
+
+
+		for( i = count-1; i >=0; i--)
+		{
+			int index = (front+i) % MAXSIZE;
+			printf("%c",q[index]);
+			printf("\n");
+		}
+
+
+}
+
+
